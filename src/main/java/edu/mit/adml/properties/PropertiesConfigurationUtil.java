@@ -43,10 +43,8 @@ public class PropertiesConfigurationUtil {
         if (login != null) {
             credentials.setPassword(login.getProperty("login_password").toString());
             credentials.setUrl(login.getProperty("login_url").toString());
-            credentials.setUsername_app(login.getProperty("app_username").toString());
-            credentials.setPassword_app(login.getProperty("app_password").toString());
         } else {
-            logger.info("No information provided for ArchivesSpace. Provide connection.properties.");
+            logger.info("No information provided for ArchivesSpace. Provide aspace.properties.");
         }
 
         return credentials;

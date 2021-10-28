@@ -1,13 +1,13 @@
 # Archives Digital Media Log
 
-This webapp enables accessioning or processing archivists to create a log of media
+This TEST webapp enables accessioning or processing archivists to create a log of media
 items within archival collections. The tool will facilitate keeping track of media
 that is in specific collection boxes/containers in aggregate terms per media format
 type. The output from this tool will enhance the collection management records in
 ArchivesSpace without needing to manually type that information again.
 
 The stack is Spring Boot/MVC/Security/Data. 
-The tool uses an embedded database (h2) in development mode.
+The tool uses an embedded database (h2) in development mode and MySql in production mode.
 
 
 Dependencies
@@ -15,7 +15,7 @@ Dependencies
 
 - A running ArchivesSpace instance
 - Maven for building the project.
-- `connection.props` (format below) to specify ArchivesSpace API and app user credentials
+- `aspace.props` (format below) to specify ArchivesSpace API and app user credentials
 - `application-prod.properties` (modeled on application.properties for production use)
 - A relational database (for production use)
 
@@ -29,13 +29,11 @@ the IPs from `localhost` to the new address.
 Configuration
 ---------------
 
-Make sure you have connection.props in the following format for ASpace lookup and user credentials:
+Make sure you have aspace.props or aspace-prod.properties in the following format for ASpace lookup and user credentials:
 
 ```sh
 login_password=
 login_url=
-app_username=
-app_password=
 ```
 
 
@@ -105,34 +103,18 @@ mvn clean install -P prod
 
 # copy the file to server as necessary
 
-scp -i ~/.digitalocean/id_rsa target/adml-0.0.1-SNAPSHOT.war user@ip:/path
-
 ```
-
-Visit `iasc.mit.edu/admin/login`.
-
 
 Server Setup
 -------------------
-- Install MySql
+- Install or use MySql
 - Install httpd and enable reverse proxy.
 - Install Tomcat 8+
 - Drop the .war to webapps folder.
 
-Where is this service deployed?
----------------------------------
-- `iasc.mit.edu` slash `adml`.
-- The app lives on a Digital Ocean Cent OS droplet.
-- You can find the war file in Tomcat `/opt/...`
-
-Backups
--------
-
-The system is snapshot on a regular basis. (In future, a process will be devised to
-create database dumps and export them to an external system.)
 
 
 Users
 ------
 
-- IASC (MIT)
+- DDC (MIT)
